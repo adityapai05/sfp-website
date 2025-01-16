@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import appwriteService from "../../appwrite/config";
-import "react-toastify/dist/ReactToastify.css";
 
 const UploadPost = () => {
   const [title, setTitle] = useState("");
@@ -27,6 +26,10 @@ const UploadPost = () => {
       setTags((prev) => [...prev, tagInput.trim()]);
       setTagInput("");
     }
+  };
+
+  const handleRemoveTag = (tagToRemove: string) => {
+    setTags(tags.filter((tag) => tag !== tagToRemove));
   };
 
   const handleSubmit = async () => {
@@ -62,7 +65,9 @@ const UploadPost = () => {
       servings: servings === "" ? 0 : servings,
       summary,
       tags,
-      ingredients: ingredients.map((ingredient) => `${ingredient.name} - ${ingredient.quantity}`),
+      ingredients: ingredients.map(
+        (ingredient) => `${ingredient.name} - ${ingredient.quantity}`
+      ),
       steps,
       image: uploadedImage.$id,
       youtubeVideo,
@@ -78,9 +83,14 @@ const UploadPost = () => {
   };
 
   return (
-    <div className="pt-36 pb-12 min-h-screen" style={{ backgroundColor: "#5cfafa" }}>
+    <div
+      className="pt-36 pb-12 min-h-screen"
+      style={{ backgroundColor: "#5cfafa" }}
+    >
       <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-2xl font-bold mb-6" style={{ color: "#4a2f23" }}>Upload a New Recipe</h1>
+        <h1 className="text-2xl font-bold mb-6" style={{ color: "#4a2f23" }}>
+          Upload a New Recipe
+        </h1>
         {/* Recipe Title */}
         <input
           type="text"
@@ -149,10 +159,16 @@ const UploadPost = () => {
               type="file"
               accept="image/*"
               className="hidden"
-              onChange={(e) => setImage(e.target.files ? e.target.files[0] : null)}
+              onChange={(e) =>
+                setImage(e.target.files ? e.target.files[0] : null)
+              }
             />
           </label>
-          {image && <p className="mt-2 text-sm text-gray-700">Selected File: {image.name}</p>}
+          {image && (
+            <p className="mt-2 text-sm text-gray-700">
+              Selected File: {image.name}
+            </p>
+          )}
         </div>
         {/* Youtube Video */}
         <h2 className="text-lg font-semibold mb-2">Youtube Video Link</h2>
@@ -176,14 +192,27 @@ const UploadPost = () => {
               value={tagInput}
               onChange={(e) => setTagInput(e.target.value)}
             />
-            <button onClick={handleAddTag} className="p-3 bg-[#ff5722] text-white rounded-lg">
+            <button
+              onClick={handleAddTag}
+              className="p-3 bg-[#ff5722] text-white rounded-lg"
+            >
               Add Tag
             </button>
           </div>
           <div className="flex gap-2 flex-wrap">
             {tags.map((tag, index) => (
-              <span key={index} className="px-4 py-2 bg-[#ff5722] text-white rounded-lg">
+              <span
+                key={index}
+                className="px-4 py-2 bg-[#ff5722] text-white rounded-lg"
+              >
                 {tag}
+                <button
+                  onClick={() => handleRemoveTag(tag)}
+                  className="ml-2 text-xs text-white"
+                >
+                  {" "}
+                  <i className="fas fa-times"></i>
+                </button>
               </span>
             ))}
           </div>
@@ -210,10 +239,15 @@ const UploadPost = () => {
             onChange={(e) => setStepsInput(e.target.value)}
           />
         </div>
-        <button onClick={handleSubmit} className="w-full p-3 bg-[#ff5722] text-white rounded-lg">
+        <button
+          onClick={handleSubmit}
+          className="w-full p-3 bg-[#ff5722] text-white rounded-lg"
+        >
           Submit Recipe
         </button>
-        {message && <p className="mt-4 text-center text-lg text-[#ff5722]">{message}</p>}
+        {message && (
+          <p className="mt-4 text-center text-lg text-[#ff5722]">{message}</p>
+        )}
       </div>
     </div>
   );

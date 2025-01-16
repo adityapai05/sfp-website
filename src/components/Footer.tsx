@@ -1,7 +1,7 @@
 import { FaInstagram, FaYoutube, FaArrowUp } from "react-icons/fa"; // Importing the arrow icon
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear(); // Get the current year
+  const currentYear = new Date().getFullYear(); 
 
   return (
     <footer className="bg-[#4a2f23] text-[#f5f5f5] text-center py-8 text-base">

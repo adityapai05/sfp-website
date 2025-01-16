@@ -6,17 +6,19 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0); 
+    window.scrollTo(0, 0);
   }, [location]);
   return (
     <nav className="bg-[#f5f5f5] shadow-md fixed w-full top-0 z-50 py-4 px-8 flex justify-between items-center">
       {/* Logo and Brand Name */}
-      <div className="flex items-center gap-4">
-        <img src={logo} alt="Cooking Pot Logo" className="w-16 h-16" />
-        <div className="hidden md:block text-2xl text-[#4a2f23] font-extrabold">
-          Sangeeta's <span className="text-[#ff5722]">Food Paradise</span>
+      <Link to="/">
+        <div className="flex items-center gap-4">
+          <img src={logo} alt="Cooking Pot Logo" className="w-16 h-16" />
+          <div className="hidden md:block text-2xl text-[#4a2f23] font-extrabold">
+            Sangeeta's <span className="text-[#ff5722]">Food Paradise</span>
+          </div>
         </div>
-      </div>
+      </Link>
 
       {/* Navigation Links */}
       <div
@@ -41,7 +43,11 @@ const Navbar = () => {
         <HashLink
           to="/#about" // Use hash link for smooth scroll
           scroll={(el) =>
-            el.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
+            el.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+              inline: "nearest",
+            })
           } // Enable smooth scroll behavior
           className="block lg:inline-block text-center px-4 py-2 cursor-pointer text-[#4a2f23] hover:text-orange-500 font-medium text-lg"
           onClick={() => setMenuOpen(false)}

@@ -15,7 +15,7 @@ interface Recipe {
   summary: string;
   slug: string;
   image: string;
-  $createdAt: string; // Ensure createdAt field is added for sorting
+  $createdAt: string; 
 }
 
 const RecipesPage: React.FC = () => {
@@ -72,12 +72,11 @@ const RecipesPage: React.FC = () => {
       if (sortOption === "quickest") {
         return a.prepTime + a.cookTime - (b.prepTime + b.cookTime);
       } else if (sortOption === "newest") {
-        // Corrected logic for sorting by createdAt
-        const dateA = new Date(a.$createdAt); // Access $createdAt from metadata
+        const dateA = new Date(a.$createdAt); 
         const dateB = new Date(b.$createdAt);
-        return dateB.getTime() - dateA.getTime(); // Sort descending (newest first)
+        return dateB.getTime() - dateA.getTime(); 
       }
-      return 0; // Default, no sorting
+      return 0; 
     });
 
   const handleTagClick = (tag: string) => {

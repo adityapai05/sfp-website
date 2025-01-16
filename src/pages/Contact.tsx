@@ -1,22 +1,19 @@
 import React, { useState } from "react";
-import emailjs from "emailjs-com"; // Import EmailJS SDK
+import emailjs from "emailjs-com";  
 import conf from "../conf/conf";
 import appwriteService from "../appwrite/config";
 
 const Contact = () => {
-  // States for the Contact Form
   const [contactName, setContactName] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [contactMessage, setContactMessage] = useState("");
   const [isSubmittingContact, setIsSubmittingContact] = useState(false);
   const [submitStatusContact, setSubmitStatusContact] = useState("");
 
-  // States for the Newsletter Subscription Form
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [isSubmittingNewsletter, setIsSubmittingNewsletter] = useState(false);
   const [submitStatusNewsletter, setSubmitStatusNewsletter] = useState("");
 
-  // Handle Contact Form Submission
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmittingContact(true);
@@ -53,7 +50,6 @@ const Contact = () => {
       });
   };
 
-  // Handle Newsletter Subscription
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmittingNewsletter(true);

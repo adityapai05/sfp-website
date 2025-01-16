@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import appwriteService from "../../appwrite/config";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; 
 
 const UpdatePost = () => {
   const [title, setTitle] = useState("");
@@ -18,6 +16,8 @@ const UpdatePost = () => {
   const [youtubeVideo, setYoutubeVideo] = useState("");
   const [_ingredients, setIngredients] = useState<string[]>([]);
   const [_steps, setSteps] = useState<string[]>([]);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -53,9 +53,13 @@ const UpdatePost = () => {
     }
   };
 
+  const handleRemoveTag = (tagToRemove: string) => {
+    setTags((prev) => prev.filter((tag) => tag !== tagToRemove));
+  };
+
   const handleSubmit = async () => {
     if (!image) {
-      toast.error("Please upload an image.");
+      setErrorMessage("Please upload an image.");
       return;
     }
 
@@ -74,7 +78,7 @@ const UpdatePost = () => {
 
     const uploadedImage = await appwriteService.uploadFile(image);
     if (!uploadedImage) {
-      toast.error("Image upload failed.");
+      setErrorMessage("Image upload failed.");
       return;
     }
 
@@ -97,9 +101,11 @@ const UpdatePost = () => {
     const updatedPost = await appwriteService.updatePost(slug, updatedPostData);
 
     if (updatedPost) {
-      toast.success("Recipe updated successfully!");
+      setSuccessMessage("Recipe updated successfully!");
+      setErrorMessage(null);
     } else {
-      toast.error("Failed to update recipe.");
+      setErrorMessage("Failed to update recipe.");
+      setSuccessMessage(null); 
     }
   };
 
@@ -221,15 +227,20 @@ const UpdatePost = () => {
             </button>
           </div>
           <div className="flex gap-2 flex-wrap">
-            {tags &&
-              tags.map((tag, index) => (
-                <span
-                  key={index}
-                  className="px-4 py-2 bg-[#ff5722] text-white rounded-lg"
+            {tags.map((tag, index) => (
+              <span
+                key={index}
+                className="px-4 py-2 bg-[#ff5722] text-white rounded-lg flex items-center gap-2"
+              >
+                {tag}
+                <button
+                  onClick={() => handleRemoveTag(tag)}
+                  className="text-sm text-white"
                 >
-                  {tag}
-                </span>
-              ))}
+                  <i className="fa-solid fa-times"></i>
+                </button>
+              </span>
+            ))}
           </div>
         </div>
         {/* Ingredients Input */}
@@ -254,6 +265,14 @@ const UpdatePost = () => {
             onChange={(e) => setStepsInput(e.target.value)}
           />
         </div>
+        {/* Success and Error Messages */}
+        {successMessage && (
+          <p className="text-green-600 mb-4">{successMessage}</p>
+        )}
+        {errorMessage && (
+          <p className="text-red-600 mb-4">{errorMessage}</p>
+        )}
+        {/* Submit Button */}
         <button
           onClick={handleSubmit}
           className="w-full p-3 bg-[#ff5722] text-white rounded-lg"
@@ -266,3 +285,4 @@ const UpdatePost = () => {
 };
 
 export default UpdatePost;
+

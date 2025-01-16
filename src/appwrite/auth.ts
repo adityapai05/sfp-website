@@ -12,7 +12,6 @@ export class AuthService {
 
   async login(email: string, password: string) {
     try {
-      // await this.account.deleteSessions();
       const response = await this.account.createEmailPasswordSession(
         email,
         password
