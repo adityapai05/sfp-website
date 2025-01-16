@@ -1,6 +1,6 @@
 # Sangeeta's Food Paradise Blog Website 🍽️
 
-This is the official blog website for **Sangeeta's Food Paradise**, which is my mother's YouTube channel focused on sharing delicious recipes. I created this website with love 💖 and passion, as a way to preserve and present her recipes in a written blog format for everyone to enjoy. It is a personal project close to my heart, as it celebrates the wonderful work my mother does and showcases her culinary expertise to a wider audience. 👩‍🍳✨
+This is the official blog website for [**Sangeeta's Food Paradise**](https://www.youtube.com/sangeetasfoodparadise), which is my mother's YouTube channel focused on sharing delicious recipes. I created this website with love 💖 and passion, as a way to preserve and present her recipes in a written blog format for everyone to enjoy. It is a personal project close to my heart, as it celebrates the wonderful work my mother does and showcases her culinary expertise to a wider audience. 👩‍🍳✨
 
 ## Tech Stack ⚙️
 - **Frontend**: React, TypeScript, Tailwind CSS
