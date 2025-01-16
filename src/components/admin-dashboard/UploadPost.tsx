@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { toast } from "react-toastify"; 
 import appwriteService from "../../appwrite/config";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -16,6 +15,7 @@ const UploadPost = () => {
   const [stepsInput, setStepsInput] = useState("");
   const [image, setImage] = useState<File | null>(null);
   const [youtubeVideo, setYoutubeVideo] = useState("");
+  const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
     const generatedSlug = title.toLowerCase().replace(/\s+/g, "-");
@@ -31,7 +31,7 @@ const UploadPost = () => {
 
   const handleSubmit = async () => {
     if (!image) {
-      toast.error("Please upload an image."); 
+      setMessage("Please upload an image.");
       return;
     }
 
@@ -50,7 +50,7 @@ const UploadPost = () => {
 
     const uploadedImage = await appwriteService.uploadFile(image);
     if (!uploadedImage) {
-      toast.error("Image upload failed."); 
+      setMessage("Image upload failed.");
       return;
     }
 
@@ -71,9 +71,9 @@ const UploadPost = () => {
     const createdRecipe = await appwriteService.createPost(recipeData);
 
     if (createdRecipe) {
-      toast.success("Recipe created successfully!");  
+      setMessage("Recipe created successfully!");
     } else {
-      toast.error("Failed to create recipe.");  
+      setMessage("Failed to create recipe.");
     }
   };
 
@@ -213,6 +213,7 @@ const UploadPost = () => {
         <button onClick={handleSubmit} className="w-full p-3 bg-[#ff5722] text-white rounded-lg">
           Submit Recipe
         </button>
+        {message && <p className="mt-4 text-center text-lg text-[#ff5722]">{message}</p>}
       </div>
     </div>
   );

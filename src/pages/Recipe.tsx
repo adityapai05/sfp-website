@@ -76,7 +76,7 @@ const DetailedRecipePage: React.FC = () => {
   }
 
   return (
-    <div className="pt-28 px-6 pb-10 min-h-screen bg-[#5cfafa] text-[#4a2f23]">
+    <div className="pt-8 lg:pt-28 px-6 pb-10 min-h-screen bg-[#5cfafa] text-[#4a2f23]">
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
         <Link
           to="/recipes"
