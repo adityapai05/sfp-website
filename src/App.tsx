@@ -15,12 +15,11 @@ function App() {
   const isAdminRoute = location.pathname.startsWith("/admin");
   const isNotFoundPage = ![
     "/",
-    "/recipe/:slug",
     "/recipes",
     "/admin/*",
     "/admin/login",
     "/contact",
-  ].includes(location.pathname);
+  ].some((path) => location.pathname.startsWith(path));
 
   return (
     <>
