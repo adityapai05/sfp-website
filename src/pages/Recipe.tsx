@@ -79,7 +79,7 @@ const DetailedRecipePage: React.FC = () => {
     <div className="pt-28 px-6 pb-10 min-h-screen bg-[#5cfafa] text-[#4a2f23]">
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
         <Link
-          to="/"
+          to="/recipes"
           className="flex items-center text-orange-500 font-semibold text-sm hover:underline px-6 py-4"
         >
           <i className="fas fa-arrow-left mr-2"></i> Back to Recipes
