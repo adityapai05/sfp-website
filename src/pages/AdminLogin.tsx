@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login as authLogin } from "../store/authSlice";
@@ -10,6 +10,22 @@ const AdminLogin = () => {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const checkSession = async () => {
+      try {
+        const userData = await authService.getCurrentUser();
+        if (userData) {
+          dispatch(authLogin(userData));
+          navigate("/admin");
+        }
+      } catch (error) {
+        console.error("No active session or error retrieving user:", error);
+        setError("Session expired. Please log in again.");
+      }
+    };
+    checkSession();
+  }, [dispatch, navigate]);
 
   const login: SubmitHandler<FieldValues> = async (data) => {
     setError("");
