@@ -77,6 +77,17 @@ const UploadPost = () => {
 
     if (createdRecipe) {
       setMessage("Recipe created successfully!");
+      setTags([]);
+      setIngredientInput("");
+      setStepsInput("");
+      setImage(null);
+      setPrepTime("");
+      setCookTime("");
+      setServings("");
+      setSummary("");
+      setSlug("");
+      setYoutubeVideo("");
+      setTitle("");
     } else {
       setMessage("Failed to create recipe.");
     }

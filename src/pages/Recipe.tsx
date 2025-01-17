@@ -120,6 +120,24 @@ const DetailedRecipePage: React.FC = () => {
             </div>
           </div>
 
+          {/* Watch the Recipe */}
+          <div className="my-6">
+            <h2 className="text-lg font-bold mb-3 text-[#4a2f23]">
+              Watch the Recipe
+            </h2>
+            <div
+              className="relative w-full overflow-hidden rounded-lg shadow-md"
+              style={{ paddingTop: "56.25%" }}
+            >
+              <iframe
+                src={`https://www.youtube.com/embed/${recipeDetails.youtubeLink}`}
+                title={recipeDetails.title}
+                className="w-full h-full absolute top-0 left-0"
+                frameBorder="0"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
           {/* Ingredients */}
           <h2 className="text-lg font-bold mb-3 text-[#4a2f23]">Ingredients</h2>
           <ul className="list-disc pl-5 mb-6 text-sm text-gray-700">
@@ -138,24 +156,6 @@ const DetailedRecipePage: React.FC = () => {
             ))}
           </ol>
 
-          {/* Watch the Recipe */}
-          <div className="mt-6">
-            <h2 className="text-lg font-bold mb-3 text-[#4a2f23]">
-              Watch the Recipe
-            </h2>
-            <div
-              className="relative w-full overflow-hidden rounded-lg shadow-md"
-              style={{ paddingTop: "56.25%" }}
-            >
-              <iframe
-                src={`https://www.youtube.com/embed/${recipeDetails.youtubeLink}`}
-                title={recipeDetails.title}
-                className="w-full h-full absolute top-0 left-0"
-                frameBorder="0"
-                allowFullScreen
-              ></iframe>
-            </div>
-          </div>
 
           {/* Tags */}
           <div className="mt-6">
